@@ -8,9 +8,15 @@ html, body {
   background: #050712;
 }
 
-body {
-  overscroll-behavior-y: none;
+html {
+  height: 100%;
 }
+
+body {
+  min-height: 100%;
+}
+
+
 
 /* --- Marquee Neon (premium) --- */
 .marquee-wrap { position: relative; overflow: hidden; }
