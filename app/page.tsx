@@ -110,7 +110,7 @@ export default function Page() {
 
   <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
     <FadeIn delay={0.06}>
-      <BeforeAfter title="Curățare & mentenanță" beforeSrc="/before.jpg" afterSrc="/after.jpg" />
+      <BeforeAfter title="Curățare & mentenanță" beforeSrc="/before.jpg" afterSrc="/after.jpg" fit="cover" aspect="16/9" />
     </FadeIn>
 
     <FadeIn delay={0.12}>
