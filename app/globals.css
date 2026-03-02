@@ -135,3 +135,37 @@ section { scroll-margin-top: 140px; }
   animation: marquee 14s linear infinite;
   will-change: transform;
 }
+
+/* === Hacker slider overlays === */
+.beforeafter-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.08) 0px,
+    rgba(255,255,255,0.08) 1px,
+    rgba(0,0,0,0) 3px,
+    rgba(0,0,0,0) 6px
+  );
+}
+
+.beforeafter-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+
+@keyframes glitchFlicker {
+  0%, 100% { opacity: 0.10; transform: translateX(0); }
+  8% { opacity: 0.35; transform: translateX(-1px); }
+  12% { opacity: 0.15; transform: translateX(1px); }
+  18% { opacity: 0.40; transform: translateX(-2px); }
+  22% { opacity: 0.12; transform: translateX(2px); }
+}
+
+.beforeafter-glitch {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(34,211,238,0.28),
+    transparent
+  );
+  animation: glitchFlicker 1.8s infinite;
+  mix-blend-mode: screen;
+}

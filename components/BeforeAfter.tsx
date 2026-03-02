@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type BeforeAfterProps = {
   beforeSrc: string;
@@ -22,7 +22,6 @@ export default function BeforeAfter({
   fit = "cover",
   aspect = "16/9",
 }: BeforeAfterProps) {
-  const uid = useId();
   const ref = useRef<HTMLDivElement | null>(null);
   const [value, setValue] = useState(55); // procent
 
@@ -81,65 +80,89 @@ export default function BeforeAfter({
         ref={ref}
         className={[
           "relative overflow-hidden rounded-2xl border",
-          "border-blue-500/20 bg-black/30",
-          "shadow-[0_20px_80px_rgba(0,0,0,0.45)]",
+          "border-cyan-300/20 bg-black/35",
+          "shadow-[0_20px_90px_rgba(0,0,0,0.55)]",
           aspectClass,
           "select-none touch-pan-y",
         ].join(" ")}
         aria-label="Before/After slider"
       >
         {/* BACK (Before) */}
-<Image
-  src={beforeSrc}
-  alt="Înainte"
-  fill
-  priority={false}
-  sizes="(max-width: 768px) 100vw, 50vw"
-  className={["absolute inset-0", objectClass].join(" ")}
-  draggable={false}
-  style={{ userSelect: "none" }}
-/>
+        <Image
+          src={beforeSrc}
+          alt="Înainte"
+          fill
+          priority={false}
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className={["absolute inset-0", objectClass].join(" ")}
+          draggable={false}
+          style={{ userSelect: "none" }}
+        />
 
-{/* TOP (After) - tăiem cu clipPath, nu schimbăm dimensiunea */}
-<div
-  className="absolute inset-0"
-  style={{
-    clipPath: `inset(0 ${100 - value}% 0 0)`,
-  }}
->
-  <Image
-    src={afterSrc}
-    alt="După"
-    fill
-    priority={false}
-    sizes="(max-width: 768px) 100vw, 50vw"
-    className={["absolute inset-0", objectClass].join(" ")}
-    draggable={false}
-    style={{ userSelect: "none" }}
-  />
-</div>
-
-        {/* Labels */}
-        <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1 text-xs text-white/85 border border-white/10">
-          Înainte
-        </div>
-        <div className="pointer-events-none absolute right-4 top-4 rounded-full bg-black/55 px-3 py-1 text-xs text-white/85 border border-white/10">
-          După
-        </div>
-
-        {/* Divider line */}
+        {/* TOP (After) - tăiem cu clipPath, nu schimbăm dimensiunea */}
         <div
-          className="pointer-events-none absolute top-0 bottom-0 w-0.5 bg-cyan-300/70 shadow-[0_0_20px_rgba(34,211,238,0.55)]"
+          className="absolute inset-0"
+          style={{
+            clipPath: `inset(0 ${100 - value}% 0 0)`,
+          }}
+        >
+          <Image
+            src={afterSrc}
+            alt="După"
+            fill
+            priority={false}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className={["absolute inset-0", objectClass].join(" ")}
+            draggable={false}
+            style={{ userSelect: "none" }}
+          />
+        </div>
+
+        {/* Hacker overlays (scanlines + noise) */}
+        <div className="pointer-events-none absolute inset-0 mix-blend-overlay opacity-25 beforeafter-scanlines" />
+        <div className="pointer-events-none absolute inset-0 opacity-[0.10] beforeafter-noise" />
+
+        {/* Labels (terminal style) */}
+        <div className="pointer-events-none absolute left-4 top-4 rounded-md bg-black/65 px-3 py-1 text-[11px] font-mono tracking-[0.22em] text-cyan-200/90 border border-cyan-300/20">
+          IN
+        </div>
+        <div className="pointer-events-none absolute right-4 top-4 rounded-md bg-black/65 px-3 py-1 text-[11px] font-mono tracking-[0.22em] text-cyan-200/90 border border-cyan-300/20">
+          OUT
+        </div>
+
+        {/* HUD corners */}
+        <div className="pointer-events-none absolute left-3 top-3 h-6 w-6 border-l-2 border-t-2 border-cyan-300/80" />
+        <div className="pointer-events-none absolute right-3 top-3 h-6 w-6 border-r-2 border-t-2 border-cyan-300/80" />
+        <div className="pointer-events-none absolute left-3 bottom-3 h-6 w-6 border-l-2 border-b-2 border-cyan-300/80" />
+        <div className="pointer-events-none absolute right-3 bottom-3 h-6 w-6 border-r-2 border-b-2 border-cyan-300/80" />
+
+        {/* Mini status */}
+        <div className="pointer-events-none absolute left-4 bottom-4 flex items-center gap-2 font-mono text-[10px] tracking-[0.22em] text-cyan-200/80">
+          <span className="inline-block h-2 w-2 rounded-full bg-lime-400/80 shadow-[0_0_10px_rgba(163,230,53,0.8)]" />
+          SIGNAL LOCKED
+        </div>
+
+        {/* Divider line (brutal neon) */}
+        <div
+          className="pointer-events-none absolute top-0 bottom-0 w-[3px]
+                     bg-gradient-to-b from-cyan-200 via-cyan-400 to-blue-500
+                     shadow-[0_0_30px_rgba(34,211,238,0.65)]"
           style={{ left: `${value}%` }}
         />
 
-        {/* Handle */}
+        {/* Handle (electric/glitch look) */}
         <div
           className="pointer-events-none absolute top-1/2 -translate-y-1/2"
           style={{ left: `${value}%` }}
         >
-          <div className="h-10 w-10 -translate-x-1/2 rounded-full bg-black/70 border border-cyan-300/40 shadow-[0_0_24px_rgba(34,211,238,0.35)] flex items-center justify-center">
-            <span className="text-cyan-200 text-sm">↔</span>
+          <div
+            className="h-11 w-11 -translate-x-1/2 rounded-full bg-black/80 border border-cyan-300/50
+                       shadow-[0_0_34px_rgba(34,211,238,0.45)] relative overflow-hidden"
+          >
+            <div className="absolute inset-0 beforeafter-glitch" />
+            <div className="h-full w-full flex items-center justify-center text-cyan-200 text-sm font-bold">
+              ↔
+            </div>
           </div>
         </div>
 
