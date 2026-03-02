@@ -25,7 +25,7 @@ export default function Page() {
   const WHATSAPP = "40772110726"; // ex: 40712345678
 
   return (
-    <main className="min-h-screen bg-[#050712] text-white">
+    <main className="min-h-screen bg-[#050712] text-white pt-28">
       <ScrollProgress />
       {/* neon background glow */}
       <div className="pointer-events-none fixed inset-0 opacity-80">

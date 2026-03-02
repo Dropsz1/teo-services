@@ -90,16 +90,16 @@ export default function StickyNav({
     "text-white bg-white/5 border border-blue-500/25 shadow-[0_0_18px_rgba(59,130,246,0.18)]";
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#050712]/70 border-b border-white/5">
-      <div className="mx-auto max-w-6xl px-6 pt-4">
-        <div
-          className={[
-            "rounded-2xl border overflow-hidden",
-            scrolled
-              ? "border-blue-500/20 bg-black/60 backdrop-blur shadow-[0_10px_40px_rgba(0,0,0,0.35)]"
-              : "border-white/10 bg-black/30 backdrop-blur",
-          ].join(" ")}
-        >
+    <div className="fixed top-0 left-0 right-0 z-60">
+  <div className="mx-auto max-w-6xl px-6 pt-4">
+    <div
+      className={[
+        "rounded-2xl border overflow-hidden transition-all duration-300",
+        scrolled
+          ? "border-blue-500/20 bg-black/70 backdrop-blur-xl shadow-[0_18px_70px_rgba(0,0,0,0.55)]"
+          : "border-white/10 bg-black/25 backdrop-blur-md",
+      ].join(" ")}
+    >
           {/* TICKER (integrated) */}
           <div
             className={[
