@@ -252,3 +252,13 @@ html[data-cursor="green"] { --cursor-rgb: 34, 197, 94; } /* terminal green */
   animation: sparkFly 420ms ease-out forwards;
 }
 
+
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
