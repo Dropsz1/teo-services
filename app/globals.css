@@ -169,3 +169,86 @@ section { scroll-margin-top: 140px; }
   animation: glitchFlicker 1.8s infinite;
   mix-blend-mode: screen;
 }
+
+
+/* === Brutal Electric Cursor (desktop only) === */
+  @media (pointer:fine) {
+  body { cursor: none; }
+}
+
+:root {
+  --cursor-rgb: 34, 211, 238; /* cyan */
+}
+
+/* mode switch */
+html[data-cursor="cyan"] { --cursor-rgb: 34, 211, 238; }
+html[data-cursor="green"] { --cursor-rgb: 34, 197, 94; } /* terminal green */
+
+.cursor-dot,
+.cursor-trail-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(var(--cursor-rgb), 0.95);
+  box-shadow:
+    0 0 12px rgba(var(--cursor-rgb), 0.65),
+    0 0 26px rgba(var(--cursor-rgb), 0.35);
+  transform: translate(-50%, -50%);
+}
+
+/* trail */
+@keyframes trailPop {
+  0% { opacity: 0.22; transform: translate(-50%, -50%) scale(1); filter: blur(0px); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.3); filter: blur(1px); }
+}
+
+.cursor-trail {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: rgba(var(--cursor-rgb), 0.22);
+  box-shadow: 0 0 18px rgba(var(--cursor-rgb), 0.22);
+  animation: trailPop 260ms linear forwards;
+}
+
+/* burst shockwave */
+@keyframes burstRing {
+  0% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.35); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
+}
+
+.cursor-burst {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid rgba(var(--cursor-rgb), 0.75);
+  box-shadow: 0 0 26px rgba(var(--cursor-rgb), 0.35);
+  animation: burstRing 420ms ease-out forwards;
+}
+
+/* sparks */
+@keyframes sparkFly {
+  0% { opacity: 0.95; transform: translate(-50%, -50%) translate(0,0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(0.2); }
+}
+
+.cursor-spark {
+  position: absolute;
+  width: 6px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(var(--cursor-rgb), 0.95);
+  box-shadow: 0 0 18px rgba(var(--cursor-rgb), 0.45);
+  animation: sparkFly 420ms ease-out forwards;
+}
+

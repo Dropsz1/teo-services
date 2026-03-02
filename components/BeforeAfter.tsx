@@ -78,6 +78,7 @@ export default function BeforeAfter({
 
       <div
         ref={ref}
+        data-cursor="green"
         className={[
           "relative overflow-hidden rounded-2xl border",
           "border-cyan-300/20 bg-black/35",
@@ -144,8 +145,8 @@ export default function BeforeAfter({
 
         {/* Divider line (brutal neon) */}
         <div
-          className="pointer-events-none absolute top-0 bottom-0 w-[3px]
-                     bg-gradient-to-b from-cyan-200 via-cyan-400 to-blue-500
+          className="pointer-events-none absolute top-0 bottom-0 w-0.75
+                     bg-linear-to-b from-cyan-200 via-cyan-400 to-blue-500
                      shadow-[0_0_30px_rgba(34,211,238,0.65)]"
           style={{ left: `${value}%` }}
         />
