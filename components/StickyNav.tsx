@@ -90,7 +90,7 @@ export default function StickyNav({
     "text-white bg-white/5 border border-blue-500/25 shadow-[0_0_18px_rgba(59,130,246,0.18)]";
 
   return (
-    <div className="sticky top-0 z-[60]">
+    <div className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#050712]/70 border-b border-white/5">
       <div className="mx-auto max-w-6xl px-6 pt-4">
         <div
           className={[
