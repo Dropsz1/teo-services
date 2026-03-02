@@ -84,36 +84,40 @@ export default function BeforeAfter({
           "border-blue-500/20 bg-black/30",
           "shadow-[0_20px_80px_rgba(0,0,0,0.45)]",
           aspectClass,
-          "select-none touch-none",
+          "select-none touch-pan-y",
         ].join(" ")}
         aria-label="Before/After slider"
       >
         {/* BACK (Before) */}
-        <Image
-          src={beforeSrc}
-          alt="Înainte"
-          fill
-          priority={false}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className={["absolute inset-0", objectClass].join(" ")}
-        />
+<Image
+  src={beforeSrc}
+  alt="Înainte"
+  fill
+  priority={false}
+  sizes="(max-width: 768px) 100vw, 50vw"
+  className={["absolute inset-0", objectClass].join(" ")}
+  draggable={false}
+  style={{ userSelect: "none" }}
+/>
 
-        {/* TOP (After) - tăiem cu clipPath, nu schimbăm dimensiunea */}
-        <div
-          className="absolute inset-0"
-          style={{
-            clipPath: `inset(0 ${100 - value}% 0 0)`,
-          }}
-        >
-          <Image
-            src={afterSrc}
-            alt="După"
-            fill
-            priority={false}
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className={["absolute inset-0", objectClass].join(" ")}
-          />
-        </div>
+{/* TOP (After) - tăiem cu clipPath, nu schimbăm dimensiunea */}
+<div
+  className="absolute inset-0"
+  style={{
+    clipPath: `inset(0 ${100 - value}% 0 0)`,
+  }}
+>
+  <Image
+    src={afterSrc}
+    alt="După"
+    fill
+    priority={false}
+    sizes="(max-width: 768px) 100vw, 50vw"
+    className={["absolute inset-0", objectClass].join(" ")}
+    draggable={false}
+    style={{ userSelect: "none" }}
+  />
+</div>
 
         {/* Labels */}
         <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1 text-xs text-white/85 border border-white/10">

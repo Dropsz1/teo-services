@@ -16,6 +16,11 @@ body {
   min-height: 100%;
 }
 
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 
 
 /* --- Marquee Neon (premium) --- */
