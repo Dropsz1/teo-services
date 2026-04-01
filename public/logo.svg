@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff" />
+      <stop offset="100%" stop-color="#00ffa3" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="15" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <!-- Background for visibility in some contexts, transparent for real usage -->
+  <rect width="512" height="512" rx="120" fill="#0a0f1e" />
+  
+  <!-- Outer Ring with Glow -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="url(#cyanGlow)" stroke-width="12" filter="url(#glow)" opacity="0.8" />
+  <circle cx="256" cy="256" r="200" fill="none" stroke="url(#cyanGlow)" stroke-width="6" />
+
+  <!-- The stylized 'T' -->
+  <path d="M160 170 h192 a16 16 0 0 1 16 16 v32 a16 16 0 0 1 -16 16 h-64 v180 a16 16 0 0 1 -16 16 h-32 a16 16 0 0 1 -16 -16 v-180 h-64 a16 16 0 0 1 -16 -16 v-32 a16 16 0 0 1 16 -16 z" fill="url(#cyanGlow)" filter="url(#glow)" />
+  <path d="M160 170 h192 a16 16 0 0 1 16 16 v32 a16 16 0 0 1 -16 16 h-64 v180 a16 16 0 0 1 -16 16 h-32 a16 16 0 0 1 -16 -16 v-180 h-64 a16 16 0 0 1 -16 -16 v-32 a16 16 0 0 1 16 -16 z" fill="#ffffff" opacity="0.9" />
+</svg>
